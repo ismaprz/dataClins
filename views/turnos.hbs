@@ -1,0 +1,410 @@
+
+
+<div class="container-fluid bg-light">
+
+<div class="container text-center m-5">
+  <hr>
+  <h1>
+    Lista de {{titulo}}.
+  </h1>
+  <hr>
+</div>
+
+<table class="table table-striped table-borderless container" id="miTabla">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">DNI</th>
+      <th scope="col">Sexo</th>
+      <th scope="col">Fecha de nacimiento</th>
+      <th scope="col">Edad</th>
+      <th scope="col">Numero de contacto</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Domicilio</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each datos}}
+    <tr>
+      <th scope="row">{{formClientes}}</th>
+      <td>{{ nombre }}</td>
+      <td>{{ apellido }}</td>
+      <td>{{ dni }}</td>
+      <td>{{ sexo }}</td>
+      <td>{{ FeDeNaci }}</td>
+      <td>{{ edad }}</td>
+      <td>{{ numContacto }}</td>
+      <td>{{ email }}</td>
+      <td>{{ domicilio }}</td>
+      <td>
+        <a href="Javascript: void(0);" class="btn btn-danger delete" data-formClientes="{{ formClientes }}" >Eliminar</a>
+        <a href="Javascript: void(0);" class="btn btn-primary edit" data-formClientes="{{ formClientes }}" data-nombre="{{ nombre }}" data-apellido="{{ apellido }}" data-dni="{{ dni }}"  data-sexo="{{ sexo }}" data-FeDeNaci="{{ FeDeNaci }}" data-edad="{{ edad }}"  data-numContacto="{{ numContacto }}" data-email="{{ email }}" data-domicilio="{{ domicilio }}">Actualizar</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{!-- Modal para el Delete --}}
+
+<form action="/delete" method="post">
+
+  <div class="modal" id="deleteModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar contacto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estas seguro de eliminar el contacto?</p>
+        </div>
+        <div class="modal-footer">
+          <input type="number" name="formClientes" id="formClientes" required>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+{{!-- Modal para el Update --}}
+
+<form action="/update" method="post">
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar contacto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       
+          <div class="mb-3">
+            <label for="nombre" class="col-form-label">nombre:</label>
+            <input type="text" class="form-control nombre" id="nombre" name="nombre">
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="col-form-label">apellido:</label>
+            <input type="text" class="form-control apellido" id="apellido" name="apellido">
+          </div>
+          <div class="mb-3">
+            <label for="dni" class="col-form-label">dni:</label>
+            <input type="number" class="form-control dni" id="dni" name="dni">
+          </div>
+          <div class="mb-3">
+            <label for="sexo" class="col-form-label">sexo:</label>
+            <input type="text" class="form-control sexo" id="sexo" name="sexo">
+          </div>
+          <div class="mb-3">
+            <label for="FeDeNaci" class="col-form-label">fecha de nacimiento:</label>
+            <input type="date" class="form-control FeDeNaci" id="FeDeNaci" name="FeDeNaci">
+          </div>
+          <div class="mb-3">
+            <label for="edad" class="col-form-label">edad:</label>
+            <input type="number" class="form-control edad" id="edad" name="edad">
+          </div>
+          <div class="mb-3">
+            <label for="numContacto" class="col-form-label">numero de contacto:</label>
+            <input type="number" class="form-control numContacto" id="numContacto" name="numContacto">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">email:</label>
+            <input type="email" class="form-control email" id="email" name="email">
+          </div>
+          <div class="mb-3">
+            <label for="domicilio" class="col-form-label">domicilio:</label>
+            <input type="text" class="form-control domicilio" id="domicilio" name="domicilio">
+          </div>
+
+      </div>
+      <div class="modal-footer">
+        <input type="number" name="formClientes" id="formClientes">
+        <button type="button" class="btn btn-secondary formClientes" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<hr>
+<hr>
+
+</div>
+
+<div class="container-fluid bg-light">
+
+<div class="container text-center m-5">
+     <h1>
+    Turnos 
+    </h1>
+</div>
+
+<div class="container m-5">
+<form action="/turnos" method="post">
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha</span>
+  </div>
+  <input type="date" class="form-control fecha" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="fecha" name="fecha">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Hora</span>
+  </div>
+  <input type="time" class="form-control hora" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="hora" name="hora">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+  </div>
+  <input type="text" class="form-control nombre" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="nombre" name="nombre">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Apellido</span>
+  </div>
+  <input type="text" class="form-control apellido" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="apellido" name="apellido">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Numero de contacto</span>
+  </div>
+  <input type="number" class="form-control numContacto" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="numContacto" name="numContacto">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">E-mail</span>
+  </div>
+  <input type="email" class="form-control email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email" name="email">
+</div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary w-75">enviar datos</button>
+  </div>
+
+</form>
+</div>
+
+<hr>
+<hr>
+
+</div>
+
+<div class="container-fluid bg-light">
+
+<div class="container text-center m-5">
+  <hr>
+  <h1>
+   Lista de turnos 
+  </h1>
+  <hr>
+</div>
+
+<table class="table table-striped table-borderless container" id="miTablaTurnos">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Apellido</th>
+      <th scope="col">Numero de contacto</th>
+      <th scope="col">E-mail</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each datos}}
+    <tr>
+      <th scope="row">{{turnos}}</th>
+      <td>{{ fecha }}</td>
+      <td>{{ hora }}</td>
+      <td>{{ nombre }}</td>
+      <td>{{ apellido }}</td>
+      <td>{{ numContacto }}</td>
+      <td>{{ email }}</td>
+      <td>
+        <a href="Javascript: void(0);" class="btn btn-danger delete" data-turnos="{{ turnos }}" >Eliminar</a>
+        <a href="Javascript: void(0);" class="btn btn-primary edit" data-turnos="{{ turnos }}" data-nombre="{{ nombre }}" data-apellido="{{ apellido }}" data-fecha="{{ fecha }}" data-hora="{{ hora }}" data-numContacto="{{ numContacto }}" data-email="{{ email }}" >Actualizar</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{!-- Modal para el Delete --}}
+
+<form action="/delete" method="post">
+
+  <div class="modal" id="deleteModal" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Eliminar el turno</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>¿Estas seguro de eliminar el turno?</p>
+        </div>
+        <div class="modal-footer">
+          <input type="number" name="turnos" id="turnos" required>
+          <button type="button" class="btn btn-secondary turnos" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-danger">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</form>
+
+{{!-- Modal para el Update --}}
+
+<form action="/update" method="post">
+
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar turno</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          
+          <div class="mb-3">
+            <label for="fecha" class="col-form-label">fecha:</label>
+            <input type="date" class="form-control fecha" id="fecha" name="fecha">
+          </div>
+          <div class="mb-3">
+            <label for="hora" class="col-form-label">hora:</label>
+            <input type="time" class="form-control apellido" id="hora" name="hora">
+          </div>
+          <div class="mb-3">
+            <label for="nombre" class="col-form-label">nombre:</label>
+            <input type="text" class="form-control nombre" id="nombre" name="nombre">
+          </div>
+          <div class="mb-3">
+            <label for="apellido" class="col-form-label">apellido:</label>
+            <input type="text" class="form-control apellido" id="apellido" name="apellido">
+          </div>
+          <div class="mb-3">
+            <label for="numContacto" class="col-form-label">numero de contacto:</label>
+            <input type="number" class="form-control numContacto" id="numContacto" name="numContacto">
+          </div>
+          <div class="mb-3">
+            <label for="email" class="col-form-label">email:</label>
+            <input type="email" class="form-control email" id="email" name="email">
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <input type="number" name="turnos" id="turnos">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</form>
+
+<hr>
+<hr>
+  
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+{{!-- Funcion para tomar los datos del Modal --}}
+
+<script>
+ {{!-- Modal del delete --}}
+  $(document).ready(function ()  {
+     $(`#miTabla`).on('click', '.delete', function(){
+    let formClientes = $(this).data('formClientes');
+    $(`#deleteModal`).modal('show')
+  })
+
+  {{!-- Modal edit --}}
+
+   $(`#miTabla`).on('click', '.edit', function(){
+    let formClientes = $(this).data('formClientes');
+    let nombre = $(this).data('nombre');
+    let apellido = $(this).data('apellido');
+    let dni = $(this).data('dni');
+    let sexo = $(this).data('sexo');
+    let FeDeNaci = $(this).data('FeDeNaci');
+    let edad = $(this).data('edad');
+    let numContacto = $(this).data('numContacto');
+    let email = $(this).data('email');
+    let domicilio = $(this).data('domicilio');
+
+    $(`#editModal`).modal('show');
+    $('.nombre').val(nombre);
+    $('.apellido').val(apellido);
+    $('.dni').val(dni);
+    $('.sexo').val(sexo);
+    $('.FeDeNaci').val(FeDeNaci);
+    $('.edad').val(edad);
+    $('.numContacto').val(numContacto);
+    $('.email').val(email);
+    $('.domicilio').val(domicilio)
+  })
+   
+   
+    })
+</script>
+
+
+<script>
+ {{!-- Modal del delete --}}
+  $(document).ready(function ()  {
+     $(`#miTablaTurnos`).on('click', '.delete', function(){
+    let turnos = $(this).data('turnos');
+    $(`#deleteModal`).modal('show')
+  })
+
+  {{!-- Modal edit --}}
+
+   $(`#miTablaTurnos`).on('click', '.edit', function(){
+    let turnos = $(this).data('turnos');
+    let fecha = $(this).data('fecha');
+    let hora = $(this).data('hora');
+    let nombre = $(this).data('nombre');
+    let apellido = $(this).data('apellido');
+    let numContacto = $(this).data('numContacto');
+    let email = $(this).data('email');
+
+    $(`#editModal`).modal('show');
+    $('.fecha').val(fecha);
+    $('.hora').val(hora);
+    $('.nombre').val(nombre);
+    $('.apellido').val(apellido);
+    $('.numContacto').val(numContacto);
+    $('.email').val(email);
+  })
+   
+   
+    })
+</script>
+
+
+
+
+

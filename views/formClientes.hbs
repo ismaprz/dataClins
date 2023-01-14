@@ -1,0 +1,80 @@
+<DIV class="containar-fluid bg-light">
+
+<div class="container text-center m-5">
+    <h1>
+        Soy el {{titulo}} 
+    </h1>
+</div>
+
+<div class="container m-5 ">
+    <form action="/formClientes" method="post">
+
+<div class="input-group m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text">Nombre y Apellido</span>
+  </div>
+  <input type="text" aria-label="First name" class="form-control" id="nombre" name="nombre">
+  <input type="text" aria-label="Last name" class="form-control" id="apellido" name="apellido">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-number" id="inputGroup-sizing-sm">DNI</span>
+  </div>
+  <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="dni" name="dni">
+</div>
+
+<div class="input-group m-5">
+  <div class="input-group-prepend">
+    <label class="input-group-text" for="inputGroupSelect01">Sexo</label>
+  </div> 
+  <select class="custom-select" id="sexo" name="sexo">
+    <option value="Femenino">Femenino</option>
+    <option value="Masculino">Masculino</option>
+    <option value="No-binario">No-binario</option>
+  </select>
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de Nacimiento</span>
+  </div>
+  <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="FeDeNaci" name="FeDeNaci">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Edad</span>
+  </div>
+  <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="edad" name="edad">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-number" id="inputGroup-sizing-sm">Numero de contacto</span>
+  </div>
+  <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="numContacto" name="numContacto">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">E-mail</span>
+  </div>
+  <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="email" name="email">
+</div>
+
+<div class="input-group input-group-sm m-5">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-sm">Domicilio</span>
+  </div>
+  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="domicilio" name="domicilio">
+</div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary w-75">enviar datos</button>
+  </div>
+
+</form>
+</div>
+
+</DIV>
